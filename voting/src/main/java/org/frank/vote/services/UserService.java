@@ -23,7 +23,7 @@ public class UserService implements UserDetailsService {
         this.roleDao = roleDao;
     }
 
-    @Override
+    @Override    
     public UserDetails loadUserByUsername(@NotNull String username) throws UsernameNotFoundException {
         User user = userDao.findByUsername(username);
         if(null == user){
