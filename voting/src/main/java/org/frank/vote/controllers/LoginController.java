@@ -1,9 +1,13 @@
 package org.frank.vote.controllers;
 
+import com.sun.istack.NotNull;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+
 
 @Controller
 public class LoginController {
@@ -13,9 +17,16 @@ public class LoginController {
         return "/login";
     }
 
-    @ResponseBody
-    @RequestMapping(value="/test",method={RequestMethod.GET,RequestMethod.POST})
-    public String test(){
-        return "test";
+    @RequestMapping(value="/fail",method={RequestMethod.GET,RequestMethod.POST})
+    public String failLogin(){        
+        return "/login";
+    }
+
+    @RequestMapping(value="/welcome",method={RequestMethod.GET})
+    public String welcome(@NotNull Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        model.addAttribute("username",username);
+        return "/pages/welcome";
     }
 }

@@ -1,5 +1,6 @@
 package org.frank.vote.entities;
 
+import com.sun.istack.NotNull;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -78,11 +79,11 @@ public class User implements UserDetails {
         this.id = id;
     }
 
-    public void setUsername(String username) {
+    public void setUsername(@NotNull String username) {
         this.username = username;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(@NotNull String password) {
         this.password = password;
     }
 
@@ -102,7 +103,7 @@ public class User implements UserDetails {
         this.enabled = enabled;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(@NotNull List<Role> roles) {
         this.roles = roles;
     }
 
@@ -118,7 +119,7 @@ public class User implements UserDetails {
         return userNumber;
     }
 
-    public void setUserNumber(String userNumber) {
+    public void setUserNumber(@NotNull String userNumber) {
         this.userNumber = userNumber;
     }
 

@@ -1,5 +1,7 @@
 package org.frank.vote.entities;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +29,7 @@ public class Role {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(@NotNull Long id) {
         this.id = id;
     }
 
@@ -35,7 +37,7 @@ public class Role {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(@NotNull String name) {
         this.name = name;
     }
 
@@ -43,7 +45,7 @@ public class Role {
         return roleDesc;
     }
 
-    public void setRoleDesc(String roleDesc) {
+    public void setRoleDesc(@NotNull String roleDesc) {
         this.roleDesc = roleDesc;
     }
 
@@ -51,7 +53,7 @@ public class Role {
         return users;
     }
 
-    public void setUsers(List<User> users) {
+    public void setUsers(@NotNull List<User> users) {
         this.users = users;
     }
 }
