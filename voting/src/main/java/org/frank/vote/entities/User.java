@@ -30,7 +30,7 @@ public class User implements UserDetails {
     private boolean credentialsNonExpired;
     private boolean enabled;
 
-    @ManyToMany(targetEntity = Role.class, cascade = CascadeType.PERSIST)
+    @ManyToMany(targetEntity = Role.class, cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
     @JoinTable(name="t_user_role",    
             joinColumns = @JoinColumn(referencedColumnName="Id",name="user_id"),
             inverseJoinColumns = @JoinColumn(referencedColumnName="Id",name="role_id")) 
