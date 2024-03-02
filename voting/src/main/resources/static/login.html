@@ -37,15 +37,18 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-puzzle-piece"></i></span>
                         </div>
-                        <input type="text" name="kaptcha" id="kaptcha" class="form-control" style="border-radius: 0.25rem !important;">
+                        <input type="text" name="captcha" id="captcha" class="form-control" style="border-radius: 0.25rem !important;">
                         <img src="/vc.jpg" alt="" style="margin-left:10px">
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Login" class="btn float-right login_btn">
                     </div>
+                    <div th:if="${not #strings.isEmpty(errorMessage)}" class="form-group has-error">
+                        <label class="control-label text-danger" th:text="${errorMessage}"></label>
+                    </div>
                 </form>
             </div>
-            <div class="card-footer">
+            <div class="card-footer">                
                 <div class="d-flex justify-content-center links">
                     Don't have an account?<a href="#">Sign Up</a>
                 </div>

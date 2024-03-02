@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
@@ -29,11 +30,6 @@ public class LoginController {
         return "/login";
     }
 
-    @RequestMapping(value="/fail",method={RequestMethod.GET,RequestMethod.POST})
-    public String failLogin(){        
-        return "/login";
-    }
-
     @RequestMapping(value="/welcome",method={RequestMethod.GET})
     public String welcome(@NotNull Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -46,7 +42,7 @@ public class LoginController {
     public void getVerifyCode(HttpServletResponse resp, HttpSession session) throws IOException {
         resp.setContentType("image/jpeg");
         String text = kaptCha.createText();
-        session.setAttribute("kaptcha", text);
+        session.setAttribute("captcha", text);
         BufferedImage image = kaptCha.createImage(text);
         try(ServletOutputStream out = resp.getOutputStream()) {
             ImageIO.write(image, "jpg", out);
