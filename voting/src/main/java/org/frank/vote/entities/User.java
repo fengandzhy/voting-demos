@@ -28,7 +28,10 @@ public class User implements UserDetails {
     private boolean credentialsNonExpired;
     private boolean enabled;
 
-    @ManyToMany(fetch=FetchType.EAGER)
+    @ManyToMany(targetEntity = Role.class, cascade = CascadeType.PERSIST)
+    @JoinTable(name="t_user_role",    
+            joinColumns = @JoinColumn(referencedColumnName="Id",name="user_id"),
+            inverseJoinColumns = @JoinColumn(referencedColumnName="Id",name="role_id")) 
     private List<Role> roles = new ArrayList<>();
 
     @Override

@@ -1,11 +1,9 @@
 package org.frank.vote.entities;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Entity(name="t_recorder")
 public class Recorder {
 
     @Id
