@@ -1,5 +1,7 @@
 package org.frank.vote.entities;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 
 @Entity(name="t_candidate")
@@ -22,7 +24,7 @@ public class Candidate {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(@NotNull Long id) {
         this.id = id;
     }
 
@@ -30,7 +32,7 @@ public class Candidate {
         return candidateName;
     }
 
-    public void setCandidateName(String candidateName) {
+    public void setCandidateName(@NotNull String candidateName) {
         this.candidateName = candidateName;
     }
 
@@ -38,7 +40,7 @@ public class Candidate {
         return candidateDesc;
     }
 
-    public void setCandidateDesc(String candidateDesc) {
+    public void setCandidateDesc(@NotNull String candidateDesc) {
         this.candidateDesc = candidateDesc;
     }
 

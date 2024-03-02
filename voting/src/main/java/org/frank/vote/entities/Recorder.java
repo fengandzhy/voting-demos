@@ -1,5 +1,7 @@
 package org.frank.vote.entities;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -23,7 +25,7 @@ public class Recorder {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(@NotNull Long id) {
         this.id = id;
     }
 
@@ -31,7 +33,7 @@ public class Recorder {
         return voterName;
     }
 
-    public void setVoterName(String voterName) {
+    public void setVoterName(@NotNull String voterName) {
         this.voterName = voterName;
     }
 
@@ -39,7 +41,7 @@ public class Recorder {
         return candidateName;
     }
 
-    public void setCandidateName(String candidateName) {
+    public void setCandidateName(@NotNull String candidateName) {
         this.candidateName = candidateName;
     }
 
@@ -47,7 +49,7 @@ public class Recorder {
         return voteTime;
     }
 
-    public void setVoteTime(LocalDateTime voteTime) {
+    public void setVoteTime(@NotNull LocalDateTime voteTime) {
         this.voteTime = voteTime;
     }
 }

@@ -1,5 +1,6 @@
 package org.frank.vote.controllers;
 
+import com.sun.istack.NotNull;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -17,12 +18,12 @@ public class LoginController {
     }
 
     @RequestMapping(value="/fail",method={RequestMethod.GET,RequestMethod.POST})
-    public String failLogin(Model model){        
+    public String failLogin(){        
         return "/login";
     }
 
     @RequestMapping(value="/welcome",method={RequestMethod.GET})
-    public String welcome(Model model){
+    public String welcome(@NotNull Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         model.addAttribute("username",username);

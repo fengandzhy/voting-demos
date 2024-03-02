@@ -1,5 +1,6 @@
 package org.frank.vote.config;
 
+import com.sun.istack.NotNull;
 import org.frank.vote.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -23,16 +24,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
     
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    protected void configure(@NotNull AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userService);
     }
 
     @Override
-    public void configure(WebSecurity web){
+    public void configure(@NotNull WebSecurity web){
         web.ignoring().antMatchers("/js/**", "/style/**","/img/**");
     }
 
-    protected void configure(HttpSecurity http) throws Exception {
+    protected void configure(@NotNull HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/vc.jpg").permitAll()
                 .anyRequest().authenticated()
@@ -57,7 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Autowired
-    public void setUserService(UserService userService) {
+    public void setUserService(@NotNull UserService userService) {
         this.userService = userService;
     }
 }
