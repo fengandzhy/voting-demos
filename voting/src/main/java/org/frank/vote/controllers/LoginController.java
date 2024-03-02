@@ -30,12 +30,12 @@ public class LoginController {
         return "/login";
     }
 
-    @RequestMapping(value="/welcome",method={RequestMethod.GET})
+    @RequestMapping(value="/vote",method={RequestMethod.GET})
     public String welcome(@NotNull Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         model.addAttribute("username",username);
-        return "/pages/welcome";
+        return "/pages/vote";
     }
 
     @GetMapping("/vc.jpg")

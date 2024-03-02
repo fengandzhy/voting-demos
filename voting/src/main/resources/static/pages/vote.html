@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/style/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+    
+</head>
+<style>
+    .header {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 10px;
+        height:36px;
+        background-color:#f5f5f5;
+    }
+    .userInfo {
+        margin-right: 20px;
+    }
+</style>
+<body>
+<div class="header">
+    <div class="userInfo">Hello, <span sec:authentication="name"></span></div>
+    <div class="logout">
+        <form th:action="@{/logout}" method="post">
+            <button type="submit" class="btn btn-primary">Logout</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
