@@ -51,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         CustomerLoginFilter loginFilter = new CustomerLoginFilter();
         loginFilter.setAuthenticationManager(authenticationManagerBean());
         loginFilter.setFilterProcessesUrl("/doLogin");
-        loginFilter.setAuthenticationSuccessHandler(new SimpleUrlAuthenticationSuccessHandler("/welcome"));
+        loginFilter.setAuthenticationSuccessHandler(new SimpleUrlAuthenticationSuccessHandler("/vote"));
         loginFilter.setAuthenticationFailureHandler(new CustomerAuthenticationFailureHandler());        
         return loginFilter;
     }
