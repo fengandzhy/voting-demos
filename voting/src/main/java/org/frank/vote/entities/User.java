@@ -22,6 +22,7 @@ public class User implements UserDetails {
     @Column(name = "username", unique=true)
     private String username;    
     private String password;
+    private boolean isVoted;
     
     private boolean accountNonExpired;
     private boolean accountNonLocked;
@@ -119,5 +120,13 @@ public class User implements UserDetails {
 
     public void setUserNumber(String userNumber) {
         this.userNumber = userNumber;
+    }
+
+    public boolean isVoted() {
+        return isVoted;
+    }
+
+    public void setVoted(boolean voted) {
+        isVoted = voted;
     }
 }
