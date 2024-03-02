@@ -77,9 +77,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .clearAuthentication(true)
                 .invalidateHttpSession(true)
                 .logoutSuccessUrl("/login.html")
-                .permitAll()
-                .and()
-                .csrf().disable();
+                .permitAll();
+//                .and()
+//                .csrf().disable();
         http.addFilterAt(loginFilter(),
                 UsernamePasswordAuthenticationFilter.class);
     }
