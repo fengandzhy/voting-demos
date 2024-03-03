@@ -5,7 +5,10 @@
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="/style/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-    <link rel="stylesheet" type="text/css" href="../style/main.css">    
+    <link rel="stylesheet" type="text/css" href="../style/main.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <style>
     .header {
@@ -27,7 +30,7 @@
         </form>
     </div>
 </div>
-<form id="voteForm" action="/vote" method="POST">
+<form id="voteForm" th:action="@{/vote}" method="POST">
 <div class="container mt-5">
     <h2>Candidate List</h2>
     <table class="table">
@@ -67,7 +70,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                Are you sure you want to submit your vote?
+                Are you sure you want to submit your vote for <strong id="modalCandidateName"></strong>?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -82,6 +85,21 @@
             const selected = document.querySelector('input[name="candidateSelection"]:checked') !== null;            
             document.getElementById('submitVote').disabled = !selected;
         });
+    });
+
+    document.getElementById('submitVote').addEventListener('click', function() {        
+        const selectedCandidateRadio = document.querySelector('input[name="candidateSelection"]:checked');
+        if (selectedCandidateRadio) {            
+            const candidateName = selectedCandidateRadio.getAttribute('value');            
+            document.getElementById('modalCandidateName').textContent = candidateName;
+        }        
+        $('#confirmSubmitModal').modal('show');
+    });
+
+    document.getElementById('confirmVote').addEventListener('click', function() {        
+        $('#confirmSubmitModal').modal('hide');       
+        document.getElementById('voteForm').submit();
+        document.getElementById('submitVote').disabled = true;
     });
 </script>
 </html>
