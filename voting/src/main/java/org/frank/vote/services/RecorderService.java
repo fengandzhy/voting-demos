@@ -21,7 +21,8 @@ public class RecorderService {
         recorderDao.save(recorder);
     }
     
-    public String findCandidateNameByUsername(String username){
-        return recorderDao.findCandidateNameByUsername(username);
+    public String findCandidateNameByUsername(@NotNull String username){
+        Recorder recorder = recorderDao.findCandidateNameByUsername(username).orElseThrow();
+        return recorder.getCandidateName();
     }
 }

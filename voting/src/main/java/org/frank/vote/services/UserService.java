@@ -28,7 +28,7 @@ public class UserService implements UserDetailsService {
         User user = userDao.findByUsername(username);
         if(null == user){
             throw new UsernameNotFoundException("User does not exist!");
-        }
+        }        
         return user;
     }
     
