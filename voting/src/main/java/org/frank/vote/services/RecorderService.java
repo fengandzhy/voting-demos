@@ -20,4 +20,8 @@ public class RecorderService {
     public void saveNewVoteRecord(@NotNull Recorder recorder){
         recorderDao.save(recorder);
     }
+    
+    public String findCandidateNameByUsername(String username){
+        return recorderDao.findCandidateNameByUsername(username);
+    }
 }
