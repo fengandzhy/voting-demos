@@ -31,11 +31,11 @@ public class VoteController {
     }
 
     @RequestMapping(value="/vote",method={RequestMethod.POST})
-    public String votePage(@NotNull String candidateSelection, @NotNull Model model){
+    public String vote(@NotNull String candidateSelection, @NotNull Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = (User)authentication.getPrincipal();
         Recorder recorder = new Recorder();
-        recorder.setUsername(user.getUserNumber());
+        recorder.setUsername(user.getUsername());
         recorder.setCandidateName(candidateSelection);
         recorder.setVoteTime(LocalDateTime.now());
         recorderService.saveNewVoteRecord(recorder);
