@@ -3,7 +3,9 @@ package org.frank.vote.controllers;
 import com.google.code.kaptcha.Producer;
 import com.sun.istack.NotNull;
 import org.frank.vote.entities.Candidate;
+import org.frank.vote.entities.User;
 import org.frank.vote.services.CandidateService;
+import org.frank.vote.services.RecorderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,6 +29,7 @@ public class LoginController {
 
     private Producer kaptCha;
     private CandidateService candidateService;
+    private RecorderService recorderService;
 
     @RequestMapping(value="/login.html",method={RequestMethod.GET,RequestMethod.POST})
     public String loginPage(){
@@ -36,10 +39,14 @@ public class LoginController {
     @RequestMapping(value="/vote.html",method={RequestMethod.GET})
     public String votePage(@NotNull Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
+        User user = (User)authentication.getPrincipal();
+        if(user.isVoted()){            
+            model.addAttribute("candidateName", recorderService.findCandidateNameByUsername(user.getUsername()));
+            return "/pages/success";
+        }
         List<Candidate> candidateList = candidateService.findAll();
         model.addAttribute("candidates", candidateList);
-        model.addAttribute("username",username);        
+        model.addAttribute("username",user.getUsername());        
         return "/pages/vote";
     }
 
@@ -62,5 +69,10 @@ public class LoginController {
     @Autowired
     public void setCandidateService(CandidateService candidateService) {
         this.candidateService = candidateService;
+    }
+
+    @Autowired
+    public void setRecorderService(RecorderService recorderService) {
+        this.recorderService = recorderService;
     }
 }

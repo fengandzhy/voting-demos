@@ -41,7 +41,7 @@ public class CreateUserTest {
             userService.deleteUserByUsername(USER_NAME);
             User u1 = new User();
             u1.setUsername(USER_NAME);
-            u1.setUserNumber("000000000001");
+            u1.setUserNumber(USER_NAME+"000000000001");
             u1.setPassword(passwordEncoder.encode("123456"));
             u1.setAccountNonExpired(true);
             u1.setAccountNonLocked(true);
@@ -75,7 +75,7 @@ public class CreateUserTest {
             userService.deleteUserByUsername(ADMIN_NAME);
             User u1 = new User();
             u1.setUsername(ADMIN_NAME);
-            u1.setUserNumber("000000000002");
+            u1.setUserNumber(USER_NAME + "000000000002");
             u1.setPassword(passwordEncoder.encode("123456"));
             u1.setAccountNonExpired(true);
             u1.setAccountNonLocked(true);
