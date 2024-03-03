@@ -6,7 +6,8 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "t_role")
+@Entity
+@Table(name = "t_role")
 public class Role {
 
     @Id

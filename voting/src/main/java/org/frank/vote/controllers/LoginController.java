@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
@@ -34,7 +33,7 @@ public class LoginController {
         return "/login";
     }
 
-    @RequestMapping(value="/vote",method={RequestMethod.GET})
+    @RequestMapping(value="/vote.html",method={RequestMethod.GET})
     public String votePage(@NotNull Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
