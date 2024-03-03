@@ -6,6 +6,7 @@ import org.frank.vote.entities.Candidate;
 import org.frank.vote.entities.User;
 import org.frank.vote.services.CandidateService;
 import org.frank.vote.services.RecorderService;
+import org.frank.vote.util.ImageIOWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -31,7 +32,8 @@ public class LoginController {
 
     private Producer kaptCha;
     private CandidateService candidateService;
-    private RecorderService recorderService;
+    private RecorderService recorderService;    
+    private ImageIOWrapper imageIOWrapper;
 
     @RequestMapping(value="/login.html",method={RequestMethod.GET,RequestMethod.POST})
     public String loginPage(){
@@ -60,7 +62,7 @@ public class LoginController {
         session.setAttribute("captcha", text);
         BufferedImage image = kaptCha.createImage(text);
         try(ServletOutputStream out = resp.getOutputStream()) {
-            ImageIO.write(image, "jpg", out);
+            imageIOWrapper.writeImage(image, "jpg", out);
         }
     }
 
@@ -77,5 +79,10 @@ public class LoginController {
     @Autowired
     public void setRecorderService(RecorderService recorderService) {
         this.recorderService = recorderService;
+    }
+    
+    @Autowired
+    public void setImageIOWrapper(ImageIOWrapper imageIOWrapper) {
+        this.imageIOWrapper = imageIOWrapper;
     }
 }

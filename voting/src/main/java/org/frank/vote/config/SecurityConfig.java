@@ -25,7 +25,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
     private UserService userService;
+    @Autowired
     private CustomerAuthenticationFailureHandler customerAuthenticationFailureHandler;
 
     @Bean
@@ -95,13 +97,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 UsernamePasswordAuthenticationFilter.class);
     }
 
-    @Autowired
-    public void setUserService(@NotNull UserService userService) {
-        this.userService = userService;
-    }
-
-    @Autowired
-    public void setCustomerAuthenticationFailureHandler(CustomerAuthenticationFailureHandler customerAuthenticationFailureHandler) {
-        this.customerAuthenticationFailureHandler = customerAuthenticationFailureHandler;
-    }
+//    @Autowired
+//    public void setUserService(@NotNull UserService userService) {
+//        this.userService = userService;
+//    }
+//
+//    @Autowired
+//    public void setCustomerAuthenticationFailureHandler(CustomerAuthenticationFailureHandler customerAuthenticationFailureHandler) {
+//        this.customerAuthenticationFailureHandler = customerAuthenticationFailureHandler;
+//    }
 }
