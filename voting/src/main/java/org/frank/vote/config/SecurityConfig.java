@@ -25,9 +25,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
+    
     private UserService userService;
-    @Autowired
+    
     private CustomerAuthenticationFailureHandler customerAuthenticationFailureHandler;
 
     @Bean
@@ -65,7 +65,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         loginFilter.setAuthenticationManager(authenticationManagerBean());
         loginFilter.setFilterProcessesUrl("/doLogin");
         loginFilter.setAuthenticationSuccessHandler(new SimpleUrlAuthenticationSuccessHandler("/vote.html"));
-        loginFilter.setAuthenticationFailureHandler(new CustomerAuthenticationFailureHandler());        
+        loginFilter.setAuthenticationFailureHandler(customerAuthenticationFailureHandler);        
         return loginFilter;
     }
 
@@ -76,12 +76,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/vc.jpg").permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin()
-                .loginPage("/login.html")
-//                .loginProcessingUrl("/doLogin")
-//                .usernameParameter("username")
-//                .passwordParameter("password")
-//                .defaultSuccessUrl("/welcome")
-//                .failureUrl("/fail")                
+                .loginPage("/login.html")            
                 .permitAll()
                 .and().logout()
                 .logoutUrl("/logout")
@@ -91,19 +86,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true)
                 .logoutSuccessUrl("/login.html")
                 .permitAll();
-//                .and()
-//                .csrf().disable();
         http.addFilterAt(loginFilter(),
                 UsernamePasswordAuthenticationFilter.class);
     }
 
-//    @Autowired
-//    public void setUserService(@NotNull UserService userService) {
-//        this.userService = userService;
-//    }
-//
-//    @Autowired
-//    public void setCustomerAuthenticationFailureHandler(CustomerAuthenticationFailureHandler customerAuthenticationFailureHandler) {
-//        this.customerAuthenticationFailureHandler = customerAuthenticationFailureHandler;
-//    }
+    @Autowired
+    public void setUserService(@NotNull UserService userService) {
+        this.userService = userService;
+    }
+
+    @Autowired
+    public void setCustomerAuthenticationFailureHandler(CustomerAuthenticationFailureHandler customerAuthenticationFailureHandler) {
+        this.customerAuthenticationFailureHandler = customerAuthenticationFailureHandler;
+    }
 }
