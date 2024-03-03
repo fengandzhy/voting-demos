@@ -47,6 +47,7 @@ public class CreateUserTest {
             u1.setAccountNonLocked(true);
             u1.setCredentialsNonExpired(true);
             u1.setEnabled(true);
+            u1.setVoted(false);
             userService.addUserAndRole(u1,"ROLE_user");
         }, "Test Failure");       
     }
@@ -61,7 +62,8 @@ public class CreateUserTest {
             u1.setAccountNonExpired(true);
             u1.setAccountNonLocked(true);
             u1.setCredentialsNonExpired(true);
-            u1.setEnabled(true);            
+            u1.setEnabled(true);
+            u1.setVoted(false);
             userService.addUserAndRole(u1,"ROLE_user");
             userService.addUserAndRole(u1,"ROLE_user"); // create the user twice if the user dose not exist. 
         });        
@@ -79,6 +81,7 @@ public class CreateUserTest {
             u1.setAccountNonLocked(true);
             u1.setCredentialsNonExpired(true);
             u1.setEnabled(true);
+            u1.setVoted(false);
             userService.addUserAndRole(u1,"ROLE_admin");
         }, "Test Failure");
     }

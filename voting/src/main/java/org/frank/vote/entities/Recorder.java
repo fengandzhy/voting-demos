@@ -5,7 +5,8 @@ import com.sun.istack.NotNull;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity(name="t_recorder")
+@Entity
+@Table(name="t_recorder")
 public class Recorder {
 
     @Id
