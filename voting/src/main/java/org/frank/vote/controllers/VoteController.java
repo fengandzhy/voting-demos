@@ -6,6 +6,7 @@ import org.frank.vote.entities.User;
 import org.frank.vote.services.CandidateService;
 import org.frank.vote.services.RecorderService;
 import org.frank.vote.services.UserService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -30,6 +31,7 @@ public class VoteController {
         this.userService = userService;
     }
 
+    @PreAuthorize("hasRole('user')")
     @RequestMapping(value="/vote",method={RequestMethod.POST})
     public String vote(@NotNull String candidateSelection, @NotNull Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

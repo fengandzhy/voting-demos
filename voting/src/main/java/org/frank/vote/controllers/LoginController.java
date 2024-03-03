@@ -7,6 +7,8 @@ import org.frank.vote.entities.User;
 import org.frank.vote.services.CandidateService;
 import org.frank.vote.services.RecorderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -36,7 +38,8 @@ public class LoginController {
         return "/login";
     }
 
-    @RequestMapping(value="/vote.html",method={RequestMethod.GET})
+    @PreAuthorize("hasRole('user')")    
+    @RequestMapping(value="/vote.html",method={RequestMethod.GET})    
     public String votePage(@NotNull Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = (User)authentication.getPrincipal();
