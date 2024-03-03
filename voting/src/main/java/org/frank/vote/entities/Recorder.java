@@ -13,8 +13,8 @@ public class Recorder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "voter_name", unique=true)
-    private String voterName;
+    @Column(name = "username", unique=true)
+    private String username;
 
     @Column(name = "candidate_name")
     private String candidateName;
@@ -30,12 +30,12 @@ public class Recorder {
         this.id = id;
     }
 
-    public String getVoterName() {
-        return voterName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setVoterName(@NotNull String voterName) {
-        this.voterName = voterName;
+    public void setUsername(@NotNull String username) {
+        this.username = username;
     }
 
     public String getCandidateName() {
