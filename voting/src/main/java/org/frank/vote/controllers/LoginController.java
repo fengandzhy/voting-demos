@@ -2,6 +2,8 @@ package org.frank.vote.controllers;
 
 import com.google.code.kaptcha.Producer;
 import com.sun.istack.NotNull;
+import org.frank.vote.entities.Candidate;
+import org.frank.vote.services.CandidateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,12 +20,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.List;
 
 
 @Controller
 public class LoginController {
 
     private Producer kaptCha;
+    private CandidateService candidateService;
 
     @RequestMapping(value="/login.html",method={RequestMethod.GET,RequestMethod.POST})
     public String loginPage(){
@@ -31,10 +35,12 @@ public class LoginController {
     }
 
     @RequestMapping(value="/vote",method={RequestMethod.GET})
-    public String welcome(@NotNull Model model){
+    public String votePage(@NotNull Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
-        model.addAttribute("username",username);
+        List<Candidate> candidateList = candidateService.findAll();
+        model.addAttribute("candidates", candidateList);
+        model.addAttribute("username",username);        
         return "/pages/vote";
     }
 
@@ -52,5 +58,10 @@ public class LoginController {
     @Autowired
     public void setKaptCha(Producer kaptCha) {
         this.kaptCha = kaptCha;
+    }
+
+    @Autowired
+    public void setCandidateService(CandidateService candidateService) {
+        this.candidateService = candidateService;
     }
 }
