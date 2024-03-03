@@ -16,10 +16,10 @@ public class Recorder {
     @Column(name = "voter_name", unique=true)
     private String voterName;
 
-    @Column(name = "candidate_name", unique=true)
+    @Column(name = "candidate_name")
     private String candidateName;
 
-    @Column(name = "vote_time", unique=true)
+    @Column(name = "vote_time")
     private LocalDateTime voteTime;
 
     public Long getId() {
