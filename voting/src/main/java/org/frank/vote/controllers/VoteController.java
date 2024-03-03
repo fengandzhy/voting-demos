@@ -35,7 +35,7 @@ public class VoteController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = (User)authentication.getPrincipal();
         Recorder recorder = new Recorder();
-        recorder.setVoterName(user.getUserNumber());
+        recorder.setUsername(user.getUserNumber());
         recorder.setCandidateName(candidateSelection);
         recorder.setVoteTime(LocalDateTime.now());
         recorderService.saveNewVoteRecord(recorder);
