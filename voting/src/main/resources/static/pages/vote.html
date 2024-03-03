@@ -49,9 +49,11 @@
             </tr>
         </tbody>
     </table>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmSubmitModal" id="submitVote">
-        Submit Vote
-    </button>
+    <div class="d-flex justify-content-center mt-3">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmSubmitModal" id="submitVote" disabled>
+            Submit Vote
+        </button>
+    </div>    
 </div>
 </form>
 </body>
@@ -74,4 +76,12 @@
         </div>
     </div>
 </div>
+<script>    
+    document.querySelectorAll('input[name="candidateSelection"]').forEach(function(radio) {
+        radio.addEventListener('change', function() {            
+            const selected = document.querySelector('input[name="candidateSelection"]:checked') !== null;            
+            document.getElementById('submitVote').disabled = !selected;
+        });
+    });
+</script>
 </html>
