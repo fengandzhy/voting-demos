@@ -21,9 +21,9 @@ import java.util.List;
 @Controller
 public class VoteController {
 
-    private CandidateService candidateService;
-    private RecorderService recorderService;
-    private UserService userService;
+    private final CandidateService candidateService;
+    private final RecorderService recorderService;
+    private final UserService userService;
     
     public VoteController(@NotNull CandidateService candidateService,
                           @NotNull RecorderService recorderService,
