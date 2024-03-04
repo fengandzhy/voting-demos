@@ -4,8 +4,10 @@ import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 
+
 @Entity
 @Table(name="t_candidate")
+@SuppressWarnings("unused")
 public class Candidate {
     
     @Id

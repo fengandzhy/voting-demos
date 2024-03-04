@@ -8,6 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "t_role")
+@SuppressWarnings("unused")
 public class Role {
 
     @Id

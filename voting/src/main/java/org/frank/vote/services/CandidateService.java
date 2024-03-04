@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class CandidateService {
     
-    private CandidateDao candidateDao;
+    private final CandidateDao candidateDao;
     
     public CandidateService(@NotNull CandidateDao candidateDao){
         this.candidateDao = candidateDao;

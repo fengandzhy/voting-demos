@@ -15,7 +15,7 @@ public class CustomerLoginFilter extends UsernamePasswordAuthenticationFilter {
         if (request.getMethod().equals("POST")) {
             String captcha = request.getParameter("captcha");
             String sessionCaptcha = (String) request.getSession().getAttribute("captcha");
-            if (!StringUtils.isEmpty(captcha) && !StringUtils.isEmpty(sessionCaptcha) && captcha.equalsIgnoreCase(sessionCaptcha)) {
+            if (StringUtils.hasLength(captcha) && StringUtils.hasLength(sessionCaptcha) && captcha.equalsIgnoreCase(sessionCaptcha)) {
                 return super.attemptAuthentication(request, response);
             }
             throw new AuthenticationServiceException("The captcha has expired or the input is incorrect");

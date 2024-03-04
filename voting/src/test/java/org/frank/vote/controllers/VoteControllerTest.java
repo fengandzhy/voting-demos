@@ -36,11 +36,9 @@ public class VoteControllerTest {
     @InjectMocks
     private VoteController voteController;
 
-    private User mockUser;
-
     @BeforeEach
     void setUp() {
-        mockUser = new User();
+        User mockUser = new User();
         mockUser.setUsername("user1");
         mockUser.setVoted(false);
 

@@ -12,6 +12,7 @@ import java.util.List;
 
 @Entity
 @Table(name="t_user")
+@SuppressWarnings("unused")
 public class User implements UserDetails {
 
     @Id

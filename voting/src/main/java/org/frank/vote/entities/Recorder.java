@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name="t_recorder")
+@SuppressWarnings("unused")
 public class Recorder {
 
     @Id

@@ -10,7 +10,7 @@ import javax.transaction.Transactional;
 @Service
 public class RecorderService {
     
-    private RecorderDao recorderDao;
+    private final RecorderDao recorderDao;
     
     public RecorderService(@NotNull RecorderDao recorderDao){
         this.recorderDao = recorderDao;
