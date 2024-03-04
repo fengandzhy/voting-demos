@@ -74,6 +74,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(@NotNull HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/vc.jpg").permitAll()
+                .antMatchers("/view.html").permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin()
                 .loginPage("/login.html")            
