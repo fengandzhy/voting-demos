@@ -43,7 +43,7 @@ This voting system is an all-encompassing monolithic application designed to pro
 2.  Install the Database: Set up MySQL on your system and create a database named `vote_demo` and execute `init.sql` to create the necessary database schema and tables.
 3.  Build the project with mvn clean package .
 4.  Launch the application using `java -jar target/voting.jar`.
-5.  Create Users Manually: Execute `CreateUserTest` to manually add users to the system. This step ensures that user records are available for authentication and voting.
+5.  Create Users Manually: Execute `CreateUserTest` to manually add users to the system. This step ensures that user records are available for authentication and voting. mvn test -Dtest=org.frank.vote.CreateUserTest
 6.  Visit `localhost:8080` in your browser to engage with the voting system.
 
 Adding these steps provides clear instructions for setting up the database and adding initial user data, ensuring that the voting system is ready for use upon startup. If you have any more questions or need further adjustments, please let me know!
