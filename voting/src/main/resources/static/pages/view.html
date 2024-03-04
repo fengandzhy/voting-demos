@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" 
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Vote Page</title>
+    <link rel="stylesheet" type="text/css" href="/style/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link rel="stylesheet" type="text/css" href="../style/main.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+    .header {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 10px;
+    }
+    .userInfo {
+        margin-right: 20px;
+    }
+</style>
+<body>
+<div sec:authorize="isAuthenticated()">
+<div class="header">
+    <div class="userInfo">Hello, <span sec:authentication="name"></span></div>
+    <div class="logout">
+        <form th:action="@{/logout}" method="post">
+            <button type="submit" class="btn btn-primary">Logout</button>
+        </form>
+    </div>   
+</div>
+</div>
+<div sec:authorize="!isAuthenticated()">
+    <div class="header"></div>
+</div>
+</body>
+<div class="container mt-5">
+    <h2>Candidate List</h2>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>            
+            <th scope="col">Candidate Name</th>
+            <th scope="col">Candidate Description</th>
+            <th scope="col">Vote Counting</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="candidate, iterStat : ${candidates}">            
+            <td th:text="${candidate.candidateName}">Candidate Name</td>
+            <td th:text="${candidate.candidateDesc}">Candidate Description</td>
+            <td th:text="${candidate.voteCounting}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</html>

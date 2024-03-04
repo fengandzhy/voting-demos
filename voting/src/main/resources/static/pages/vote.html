@@ -22,13 +22,13 @@
     }
 </style>
 <body>
-<div class="header">
+<div class="header">    
     <div class="userInfo">Hello, <span sec:authentication="name"></span></div>
     <div class="logout">
         <form th:action="@{/logout}" method="post">
             <button type="submit" class="btn btn-primary">Logout</button>
         </form>
-    </div>
+    </div>    
 </div>
 <form id="voteForm" th:action="@{/vote}" method="POST">
 <div class="container mt-5">
@@ -45,8 +45,8 @@
         <tbody>
             <tr th:each="candidate, iterStat : ${candidates}">
                 <td th:text="${iterStat.count}">1</td>
-                <td th:text="${candidate.candidateName}">Candidate Name</td>
-                <td th:text="${candidate.candidateDesc}">Candidate Description</td>
+                <td th:text="${candidate.candidateName}"></td>
+                <td th:text="${candidate.candidateDesc}"></td>
                 <td><input type="radio" name="candidateSelection" th:title="|Vote for ${candidate.candidateName}|"
                            th:value="${candidate.candidateName}" /></td>
             </tr>

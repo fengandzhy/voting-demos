@@ -1,6 +1,7 @@
 package org.frank.vote.controllers;
 
 import com.sun.istack.NotNull;
+import org.frank.vote.entities.Candidate;
 import org.frank.vote.entities.Recorder;
 import org.frank.vote.entities.User;
 import org.frank.vote.services.CandidateService;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Controller
 public class VoteController {
@@ -45,5 +47,12 @@ public class VoteController {
         userService.updateUserVoteStatus(user.getUsername());
         model.addAttribute("candidateName", candidateSelection);
         return "/pages/success";
+    }
+
+    @RequestMapping(value="/view.html",method={RequestMethod.GET})
+    public String view(@NotNull Model model){
+        List<Candidate> candidateList = candidateService.findAll();
+        model.addAttribute("candidates", candidateList);
+        return "/pages/view"; 
     }
 }

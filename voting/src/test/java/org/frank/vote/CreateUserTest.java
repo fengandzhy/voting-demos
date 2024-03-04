@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @ExtendWith(SpringExtension.class)
 public class CreateUserTest {
     
-    private static final String USER_NAME = "Frank";
+    private static final String USER_NAME = "Roger";
     private static final String ADMIN_NAME = "Sam";
 
     @Autowired
@@ -75,7 +75,7 @@ public class CreateUserTest {
             userService.deleteUserByUsername(ADMIN_NAME);
             User u1 = new User();
             u1.setUsername(ADMIN_NAME);
-            u1.setUserNumber(USER_NAME + "000000000002");
+            u1.setUserNumber(ADMIN_NAME + "000000000002");
             u1.setPassword(passwordEncoder.encode("123456"));
             u1.setAccountNonExpired(true);
             u1.setAccountNonLocked(true);
