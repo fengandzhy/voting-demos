@@ -15,8 +15,8 @@ import javax.transaction.Transactional;
 @Service
 public class UserService implements UserDetailsService {
 
-    private UserDao userDao;
-    private RoleDao roleDao;
+    private final UserDao userDao;
+    private final RoleDao roleDao;
 
     public UserService(@NotNull UserDao userDao, @NotNull RoleDao roleDao){
         this.userDao = userDao;
