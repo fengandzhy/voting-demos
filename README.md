@@ -1,4 +1,4 @@
-Of course, here's the further updated technical description of the voting system, now including Maven, MySQL, and CDN technologies, translated into English:
+
 
 ## System Overview
 
